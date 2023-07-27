@@ -1,13 +1,7 @@
-import mongoose, { STATES } from "mongoose";
-import { Schema } from "mongoose";
+import mongoose, { Schema }from "mongoose";
 
 
-
-const userSchema = new Schema({
-    id: {
-        type: Schema.Types.UUID,
-        required: true
-    },
+const adminSchema = new Schema({
     firstName: {
         type: String,
         required: true
@@ -48,6 +42,11 @@ const userSchema = new Schema({
         type: Number,
         required: true
     },
-
-        
+    profileIsPublic: {
+        type: Boolean,
+        default: false
+    }
+    
 })
+
+export const ADMIN = mongoose.model("ADMIN", adminSchema);

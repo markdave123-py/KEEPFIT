@@ -54,14 +54,14 @@ var adminSchema = new mongoose_1.Schema({
         required: true
     },
     weight: {
-        type: Number,
+        type: String,
         required: true
     },
     profileImage: {
         type: String
     },
     height: {
-        type: Number,
+        type: String,
         required: true
     },
     profileIsPublic: {

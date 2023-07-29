@@ -35,30 +35,31 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.connectToDatabase = void 0;
-var mongoose_1 = __importDefault(require("mongoose"));
-var env_1 = require("./env");
-var connectToDatabase = function () { return __awaiter(void 0, void 0, void 0, function () {
-    var error_1;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                _a.trys.push([0, 2, , 3]);
-                return [4 /*yield*/, mongoose_1.default.connect(env_1.config.mongoUrl)];
-            case 1:
-                _a.sent();
-                console.log('Connected to the database');
-                return [3 /*break*/, 3];
-            case 2:
-                error_1 = _a.sent();
-                console.error('Error connecting to the database:', error_1.message);
-                return [3 /*break*/, 3];
-            case 3: return [2 /*return*/];
-        }
-    });
-}); };
-exports.connectToDatabase = connectToDatabase;
+exports.AdminService = void 0;
+var admin_1 = require("src/models/admin");
+var defaultAdim_1 = require("./defaultAdim");
+var AdminService = exports.AdminService = /** @class */ (function () {
+    function AdminService() {
+    }
+    var _a;
+    _a = AdminService;
+    AdminService.addAdminToDb = function () { return __awaiter(void 0, void 0, void 0, function () {
+        var allAdmin, admin;
+        return __generator(_a, function (_b) {
+            switch (_b.label) {
+                case 0: return [4 /*yield*/, admin_1.ADMIN.countDocuments()];
+                case 1:
+                    allAdmin = _b.sent();
+                    if (!(allAdmin === 0)) return [3 /*break*/, 3];
+                    return [4 /*yield*/, admin_1.ADMIN.create(defaultAdim_1.defaultAdmin)];
+                case 2:
+                    admin = _b.sent();
+                    console.log(admin);
+                    _b.label = 3;
+                case 3: return [2 /*return*/];
+            }
+        });
+    }); };
+    return AdminService;
+}());

@@ -1,11 +1,16 @@
-import { ADMIN } from "src/models/admin";
+import { ADMIN } from "../models/admin";
+import { defaultAdmin } from "./defaultAdim";
 
-class AdminService{
-    addAdminToDb = async () =>{
+export class AdminService{
+
+    static addAdminToDb = async () =>{
 
         const allAdmin = await ADMIN.countDocuments()
 
-        if ( allAdmin === 0){
+        if (allAdmin === 0){
+
+          const admin = await  ADMIN.create(defaultAdmin);
+          console.log(admin);
             
         }
     }

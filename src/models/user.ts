@@ -1,7 +1,21 @@
-import mongoose, { Schema }from "mongoose";
+import mongoose, { Schema, Document }from "mongoose";
+
+interface IUSER extends Document {
+    firstName: String;
+    lastName: String;
+    email:  String;   
+    phoneNumber: String;
+    age: Number;
+    gender:  String;
+    weight:  Number;
+    profileImage:String;
+    height: Number;
+    profileIsPublic: Boolean,
+
+}
 
 
-const userSchema = new Schema({
+const userSchema: Schema<IUSER> = new Schema({
     firstName: {
         type: String,
         required: true
@@ -49,4 +63,4 @@ const userSchema = new Schema({
     
 })
 
-export const USER = mongoose.model("user", userSchema);
+export const USER = mongoose.model<IUSER>("user", userSchema);

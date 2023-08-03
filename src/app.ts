@@ -8,6 +8,9 @@ import { AdminService } from './services/adminToDb';
 
 const app = express();
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: false}));
+
 
 app.get('/', (req: Request, res: Response) => {
   res.send('Hello, World!');

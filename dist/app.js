@@ -9,6 +9,8 @@ var database_1 = require("./config/database");
 var env_1 = require("./config/env");
 var adminToDb_1 = require("./services/adminToDb");
 var app = (0, express_1.default)();
+app.use(express_1.default.json());
+app.use(express_1.default.urlencoded({ extended: false }));
 app.get('/', function (req, res) {
     res.send('Hello, World!');
 });

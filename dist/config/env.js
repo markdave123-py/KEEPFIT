@@ -8,5 +8,6 @@ var dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 exports.config = Object.freeze({
     port: process.env.PORT,
-    mongoUrl: process.env.MONGO_URL
+    mongoUrl: process.env.MONGO_URL,
+    ACCESS_TOKEN_SECRET: process.env.ACCESS_TOKEN_SECRET
 });

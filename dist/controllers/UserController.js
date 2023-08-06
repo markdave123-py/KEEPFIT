@@ -36,30 +36,28 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AdminService = void 0;
-var admin_1 = require("../models/admin");
-var defaultAdim_1 = require("./defaultAdim");
-var AdminService = exports.AdminService = /** @class */ (function () {
-    function AdminService() {
-    }
-    var _a;
-    _a = AdminService;
-    AdminService.addAdminToDb = function () { return __awaiter(void 0, void 0, void 0, function () {
-        var allAdmin, admin;
-        return __generator(_a, function (_b) {
-            switch (_b.label) {
-                case 0: return [4 /*yield*/, admin_1.ADMIN.countDocuments()];
-                case 1:
-                    allAdmin = _b.sent();
-                    if (!(allAdmin === 0)) return [3 /*break*/, 3];
-                    return [4 /*yield*/, admin_1.ADMIN.create(defaultAdim_1.defaultAdmin)];
-                case 2:
-                    admin = _b.sent();
-                    console.log(admin);
-                    _b.label = 3;
-                case 3: return [2 /*return*/];
+exports.createNewUser = void 0;
+var user_1 = require("src/models/user");
+var hash_1 = require("src/utils/hash");
+var createNewUser = function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
+    var password, theHashedPassword, newUser, validationError, savedUser;
+    return __generator(this, function (_a) {
+        try {
+            password = req.body.password;
+            theHashedPassword = (0, hash_1.hashPassword)(password);
+            newUser = new user_1.USER(Object.assign({}, req.body, { password: theHashedPassword }));
+            validationError = newUser.validateSync();
+            if (validationError) {
+                return [2 /*return*/, res.status(404).json({ error: 'missing required fields' })];
             }
-        });
-    }); };
-    return AdminService;
-}());
+            savedUser = newUser.save();
+            return [2 /*return*/, res.status(201).json(savedUser)];
+        }
+        catch (error) {
+            console.error('Error saving this user', error);
+            return [2 /*return*/, res.status(500).json({ error: "something went wrong" })];
+        }
+        return [2 /*return*/];
+    });
+}); };
+exports.createNewUser = createNewUser;

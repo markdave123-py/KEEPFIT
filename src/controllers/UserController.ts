@@ -3,9 +3,7 @@ import { USER } from 'src/models/user';
 import { hashPassword } from 'src/utils/hash';
 
 
-
 export const createNewUser = async (req: Request, res:Response, next: NextFunction) =>{
-
     try {
         //creating new users
         const { password } = req.body

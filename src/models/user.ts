@@ -48,6 +48,7 @@ const userSchema: Schema<IUSER> = new Schema({
     weight: {
         type: Number,
         required: true
+        
     },
     profileImage: {
         type: String

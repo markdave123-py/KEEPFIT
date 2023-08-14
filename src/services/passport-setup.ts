@@ -2,9 +2,11 @@ import passport from 'passport';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 
 
-passport.use(
-    new GoogleStrategy({
-    //something
+passport.use( new GoogleStrategy({
+    clientID: '//somethoing',
+    clientSecret: '',
+    callbackURL: '',
+    passReqToCallback: ''
 
     
     }), () => {
